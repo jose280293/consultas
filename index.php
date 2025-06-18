@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - API REST Brasil</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0f172a",
+                        accent: "#22c55e",
+                        secondary: "#1e40af",
+                        dark: "#0f172a",
+                        light: "#f8fafc"
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen theme-dark" id="app">
+    <div class="flex">
+        
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 backdrop-blur-md border-r transition-transform -translate-x-full lg:translate-x-0 bg-card border-theme">
+    <div class="flex flex-col h-full">
+        <!-- Header com botão de fechar (mobile) -->
+        <div class="flex items-center justify-between p-3 border-b border-theme lg:hidden">
+            <div class="flex items-center">
+                <img src="https://www.apii.rest/imagens/logo.png" alt="Logo" class="w-8 h-8 mr-2 object-contain">
+                <span class="text-primary-theme font-bold text-sm">API REST BRASIL</span>
+            </div>
+            <button id="sidebar-close" class="text-muted-theme hover:text-primary-theme transition-colors">
+                <i class="ri-close-line text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Navegação Principal - SEM SCROLL -->
+        <div class="flex-1 p-3 overflow-y-auto scroll-smooth">
+            <nav class="space-y-1">
+                <!-- Dashboard -->
+                <a href="index.php" class="group flex items-center px-2 py-2 rounded-md transition-all text-secondary-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-10 bg-accent bg-opacity-20 text-accent">
+                    <i class="ri-dashboard-line mr-2 text-sm"></i>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+
+                <!-- Categorias Compactas -->
+                                    <div class="mb-2">
+                        <!-- Header da Categoria Compacto -->
+                        <div class="flex items-center px-2 py-1 mb-1">
+                            <div class="p-1 bg-accent bg-opacity-20 rounded mr-2">
+                                <i class="ri-user-search-line text-accent text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-xs text-primary-theme">Dados Pessoais</div>
+                            </div>
+                            <div class="text-xs text-muted-theme">6</div>
+                        </div>
+
+                        <!-- Módulos da Categoria - Layout Compacto -->
+                        <div class="space-y-0.5 ml-4">
+                                                            <a href="modules/pessoas/bigdata.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">BigData</span>
+                                                                            <span class="text-accent text-xs ml-1">8</span>
+                                                                    </a>
+                                                            <a href="modules/pessoas/cadsus.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">CADSUS - Cadastro Nacional do SUS</span>
+                                                                            <span class="text-accent text-xs ml-1">8</span>
+                                                                    </a>
+                                                            <a href="modules/pessoas/cpf_full.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">CPF Full</span>
+                                                                    </a>
+                                                            <a href="modules/pessoas/credlink.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">CredLink</span>
+                                                                            <span class="text-accent text-xs ml-1">10</span>
+                                                                    </a>
+                                                            <a href="modules/pessoas/financeiro_credito.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Score & Crédito</span>
+                                                                    </a>
+                                                            <a href="modules/pessoas/telefone.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Consulta Telefone</span>
+                                                                    </a>
+                                                    </div>
+                    </div>
+                                    <div class="mb-2">
+                        <!-- Header da Categoria Compacto -->
+                        <div class="flex items-center px-2 py-1 mb-1">
+                            <div class="p-1 bg-accent bg-opacity-20 rounded mr-2">
+                                <i class="ri-file-text-line text-accent text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-xs text-primary-theme">Documentos</div>
+                            </div>
+                            <div class="text-xs text-muted-theme">1</div>
+                        </div>
+
+                        <!-- Módulos da Categoria - Layout Compacto -->
+                        <div class="space-y-0.5 ml-4">
+                                                            <a href="modules/documentos/cnh_sp.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">CNH São Paulo</span>
+                                                                    </a>
+                                                    </div>
+                    </div>
+                                    <div class="mb-2">
+                        <!-- Header da Categoria Compacto -->
+                        <div class="flex items-center px-2 py-1 mb-1">
+                            <div class="p-1 bg-accent bg-opacity-20 rounded mr-2">
+                                <i class="ri-image-line text-accent text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-xs text-primary-theme">Fotos Estaduais</div>
+                            </div>
+                            <div class="text-xs text-muted-theme">6</div>
+                        </div>
+
+                        <!-- Módulos da Categoria - Layout Compacto -->
+                        <div class="space-y-0.5 ml-4">
+                                                            <a href="modules/fotos/foto_ce.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Foto Ceará</span>
+                                                                    </a>
+                                                            <a href="modules/fotos/foto_es.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Foto Espírito Santo</span>
+                                                                    </a>
+                                                            <a href="modules/fotos/foto_ma.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Foto Maranhão</span>
+                                                                    </a>
+                                                            <a href="modules/fotos/foto_pe.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Foto Pernambuco</span>
+                                                                    </a>
+                                                            <a href="modules/fotos/foto_pr.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Foto Paraná</span>
+                                                                    </a>
+                                                            <a href="modules/fotos/foto_rj.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Foto Rio de Janeiro</span>
+                                                                    </a>
+                                                    </div>
+                    </div>
+                                    <div class="mb-2">
+                        <!-- Header da Categoria Compacto -->
+                        <div class="flex items-center px-2 py-1 mb-1">
+                            <div class="p-1 bg-accent bg-opacity-20 rounded mr-2">
+                                <i class="ri-car-line text-accent text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-xs text-primary-theme">Consultas Veiculares</div>
+                            </div>
+                            <div class="text-xs text-muted-theme">4</div>
+                        </div>
+
+                        <!-- Módulos da Categoria - Layout Compacto -->
+                        <div class="space-y-0.5 ml-4">
+                                                            <a href="modules/veiculos/placas.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Placas Online</span>
+                                                                    </a>
+                                                            <a href="modules/veiculos/veicular_ear.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">EAR Veicular</span>
+                                                                    </a>
+                                                            <a href="modules/veiculos/veicular_multas_mg.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Multas MG</span>
+                                                                    </a>
+                                                            <a href="modules/veiculos/veicular_vistoria.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Vistoria Veicular</span>
+                                                                    </a>
+                                                    </div>
+                    </div>
+                                    <div class="mb-2">
+                        <!-- Header da Categoria Compacto -->
+                        <div class="flex items-center px-2 py-1 mb-1">
+                            <div class="p-1 bg-accent bg-opacity-20 rounded mr-2">
+                                <i class="ri-scales-3-line text-accent text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-medium text-xs text-primary-theme">Consultas Jurídicas</div>
+                            </div>
+                            <div class="text-xs text-muted-theme">1</div>
+                        </div>
+
+                        <!-- Módulos da Categoria - Layout Compacto -->
+                        <div class="space-y-0.5 ml-4">
+                                                            <a href="modules/juridico/processos.php"
+                                    class="group flex items-center px-2 py-1 rounded text-xs transition-all text-muted-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-5 ">
+                                    <div class="w-1 h-1 bg-gray-500 rounded-full mr-2 group-hover:bg-accent transition-colors"></div>
+                                    <span class="truncate flex-1">Processos Judiciais</span>
+                                                                    </a>
+                                                    </div>
+                    </div>
+                            </nav>
+        </div>
+
+        <!-- Footer Compacto - Sempre visível -->
+        <div class="p-2 border-t border-theme">
+            <div class="rounded-md p-3" style="background: linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));">
+                <div class="text-center">
+                    <div class="font-bold text-sm text-primary-theme">18 APIs</div>
+                    <div class="text-xs mb-2 text-secondary-theme">Disponíveis</div>
+                </div>
+
+                <div class="flex justify-between text-center text-xs">
+                    <div>
+                        <div class="text-accent font-bold">41</div>
+                        <div class="text-muted-theme">Consultas</div>
+                    </div>
+                    <div>
+                        <div class="text-blue-400 font-bold">5</div>
+                        <div class="text-muted-theme">Categorias</div>
+                    </div>
+                </div>
+
+                <!-- Status Online Compacto -->
+                <div class="flex items-center justify-center mt-2 pt-2 border-t border-white border-opacity-10">
+                    <div class="w-1.5 h-1.5 bg-accent rounded-full mr-1.5 animate-pulse"></div>
+                    <span class="text-xs text-muted-theme">Online</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Overlay para mobile -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden hidden"></div>
+
+<script>
+    // Aguardar o DOM carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        // Botão de fechar sidebar (X)
+        const sidebarClose = document.getElementById('sidebar-close');
+        if (sidebarClose) {
+            sidebarClose.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // Usar a função global do header
+                if (typeof toggleSidebar === 'function') {
+                    toggleSidebar();
+                }
+            });
+        }
+
+        // Fechar sidebar ao clicar no overlay
+        const overlay = document.getElementById('sidebar-overlay');
+        if (overlay) {
+            overlay.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // Usar a função global do header
+                if (typeof toggleSidebar === 'function') {
+                    toggleSidebar();
+                }
+            });
+        }
+
+        // Fechar sidebar ao clicar em links (mobile)
+        document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    setTimeout(() => {
+                        const sidebar = document.getElementById('sidebar');
+                        const overlay = document.getElementById('sidebar-overlay');
+                        if (sidebar && overlay) {
+                            sidebar.classList.add('-translate-x-full');
+                            overlay.classList.add('hidden');
+                        }
+                    }, 100);
+                }
+            });
+        });
+    });
+</script>
+        <div class="flex-1 lg:ml-64">
+            <header class="backdrop-blur-md border-b sticky top-0 z-50 bg-card border-theme">
+    <div class="px-4 py-2">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+                <button id="sidebar-toggle" class="lg:hidden mr-4 text-primary-theme hover:text-accent transition-colors">
+                    <i class="ri-menu-line text-xl"></i>
+                </button>
+                <div class="flex items-center">
+                    <img src="https://www.apii.rest/imagens/logo.png" alt="Logo" class="w-8 h-8 mr-3 object-contain">
+                    <div>
+                        <span class="font-bold text-lg text-primary-theme">API REST</span>
+                        <span class="text-accent font-bold text-lg">BRASIL</span>
+                        <span class="text-xs ml-2 font-light tracking-wider text-secondary-theme">Consultas e Integrações</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <!-- Toggle Tema -->
+                <button id="theme-toggle" class="p-2 rounded-lg transition-all duration-200 theme-toggle-btn">
+    <i id="theme-icon-sun" class="ri-sun-line text-lg theme-icon-sun"></i>
+    <i id="theme-icon-moon" class="ri-moon-line text-lg theme-icon-moon"></i>
+</button>
+
+<style>
+    /* Botão do toggle - sempre visível */
+    .theme-toggle-btn {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-toggle-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+    }
+
+    /* Tema Escuro */
+    body.theme-dark {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    body.theme-dark .theme-toggle-btn {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.theme-dark .theme-toggle-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.theme-dark .theme-icon-sun {
+        display: none;
+    }
+
+    body.theme-dark .theme-icon-moon {
+        display: inline;
+    }
+
+    /* Tema Claro */
+    body.theme-light {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+
+    body.theme-light .theme-toggle-btn {
+        color: #1f2937;
+        background-color: rgba(31, 41, 55, 0.1);
+        border-color: rgba(31, 41, 55, 0.2);
+    }
+
+    body.theme-light .theme-toggle-btn:hover {
+        background-color: rgba(31, 41, 55, 0.2);
+    }
+
+    body.theme-light .theme-icon-sun {
+        display: inline;
+    }
+
+    body.theme-light .theme-icon-moon {
+        display: none;
+    }
+
+    /* Cores globais para tema claro */
+    body.theme-light .bg-card {
+        background-color: rgba(255, 255, 255, 0.95);
+        border-color: rgba(229, 231, 235, 0.8);
+    }
+
+    body.theme-light .text-primary-theme {
+        color: #1f2937;
+    }
+
+    body.theme-light .text-secondary-theme {
+        color: #4b5563;
+    }
+
+    body.theme-light .text-muted-theme {
+        color: #6b7280;
+    }
+
+    body.theme-light .border-theme {
+        border-color: rgba(229, 231, 235, 0.8);
+    }
+
+    /* Cores globais para tema escuro */
+    body.theme-dark .bg-card {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.theme-dark .text-primary-theme {
+        color: white;
+    }
+
+    body.theme-dark .text-secondary-theme {
+        color: #d1d5db;
+    }
+
+    body.theme-dark .text-muted-theme {
+        color: #9ca3af;
+    }
+
+    body.theme-dark .border-theme {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Estilos específicos para selects no tema escuro */
+    body.theme-dark select {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    body.theme-dark select:focus {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        border-color: #22c55e !important;
+    }
+
+    body.theme-dark select option {
+        background-color: #1e293b !important;
+        color: white !important;
+    }
+
+    body.theme-dark select option:hover,
+    body.theme-dark select option:focus {
+        background-color: #334155 !important;
+        color: white !important;
+    }
+
+    /* Estilos específicos para inputs no tema escuro */
+    body.theme-dark input[type="text"],
+    body.theme-dark input[type="password"] {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    body.theme-dark input[type="text"]:focus,
+    body.theme-dark input[type="password"]:focus {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-color: #22c55e !important;
+    }
+
+    body.theme-dark input::placeholder {
+        color: #9ca3af !important;
+    }
+
+    /* Estilos para botões no tema escuro */
+    body.theme-dark button:not(.bg-accent):not(.action-button):not(.theme-toggle-btn) {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    body.theme-dark button:not(.bg-accent):not(.action-button):not(.theme-toggle-btn):hover {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Aplicar tema salvo ou padrão escuro
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        applyTheme(savedTheme);
+
+        // Toggle tema
+        themeToggle?.addEventListener('click', function() {
+            const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Disparar evento personalizado para notificar componentes externos
+            document.dispatchEvent(new CustomEvent('themeChanged', {
+                detail: {
+                    theme: newTheme
+                }
+            }));
+        });
+
+        function applyTheme(theme) {
+            // Remover todas as classes de tema
+            document.body.classList.remove('theme-dark', 'theme-light');
+            // Adicionar a classe do tema atual
+            document.body.classList.add(`theme-${theme}`);
+
+            // Atualizar classes condicionais
+            updateConditionalClasses();
+        }
+
+        function updateConditionalClasses() {
+            const isLight = document.body.classList.contains('theme-light');
+
+            // Atualizar elementos com classes condicionais
+            document.querySelectorAll('[class*="dark:"], [class*="light:"]').forEach(el => {
+                // Remover classes condicionais e aplicar as corretas
+                const classes = el.className.split(' ');
+                const newClasses = classes.filter(c => !c.includes('dark:') && !c.includes('light:'));
+
+                // Adicionar classes baseadas no tema atual
+                classes.forEach(c => {
+                    if (isLight && c.startsWith('light:')) {
+                        newClasses.push(c.replace('light:', ''));
+                    } else if (!isLight && c.startsWith('dark:')) {
+                        newClasses.push(c.replace('dark:', ''));
+                    }
+                });
+
+                el.className = newClasses.join(' ');
+            });
+        }
+    });
+</script>
+                <div class="text-right hidden sm:block">
+                    <div class="text-sm font-medium text-primary-theme"></div>
+                    <div class="text-xs text-secondary-theme"></div>
+                </div>
+                <div class="relative">
+                    <button id="user-menu-btn" class="flex items-center text-primary-theme hover:text-accent">
+                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                            <i class="ri-user-line text-primary"></i>
+                        </div>
+                        <i class="ri-arrow-down-s-line ml-1"></i>
+                    </button>
+                    <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 backdrop-blur-md rounded-lg border shadow-lg bg-card border-theme">
+                        <div class="py-2">
+                            <a href="profile.php" class="flex items-center px-4 py-2 text-secondary-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-10">
+                                <i class="ri-user-settings-line mr-2"></i> Perfil
+                            </a>
+                            <a href="?logout=1" class="flex items-center px-4 py-2 text-secondary-theme hover:text-primary-theme hover:bg-white hover:bg-opacity-10">
+                                <i class="ri-logout-box-line mr-2"></i> Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função global para toggle do sidebar
+        function toggleSidebar() {
+            console.log('toggleSidebar chamada'); // Debug
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+
+            console.log('Sidebar:', sidebar); // Debug
+            console.log('Overlay:', overlay); // Debug
+
+            if (sidebar && overlay) {
+                const isHidden = sidebar.classList.contains('-translate-x-full');
+                console.log('Sidebar hidden:', isHidden); // Debug
+
+                if (isHidden) {
+                    // Mostrar sidebar
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                    console.log('Mostrando sidebar'); // Debug
+                } else {
+                    // Esconder sidebar
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                    console.log('Escondendo sidebar'); // Debug
+                }
+            } else {
+                console.error('Sidebar ou overlay não encontrados'); // Debug
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM carregado no header'); // Debug
+
+            // Toggle sidebar no mobile
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            console.log('Botão toggle encontrado:', sidebarToggle); // Debug
+
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    console.log('Botão toggle clicado!'); // Debug
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleSidebar();
+                });
+            } else {
+                console.error('Botão toggle não encontrado!'); // Debug
+            }
+
+            // Menu do usuário
+            const userMenuBtn = document.getElementById('user-menu-btn');
+            const userMenu = document.getElementById('user-menu');
+
+            if (userMenuBtn && userMenu) {
+                userMenuBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    userMenu.classList.toggle('hidden');
+                });
+
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', function(e) {
+                    if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+                        userMenu.classList.add('hidden');
+                    }
+                });
+            }
+        });
+
+        
+    </script>
+</header>
+            <main class="p-6">
+                <div class="mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 class="text-3xl font-bold text-primary-theme mb-2">Dashboard de Consultas</h1>
+                            <p class="text-secondary-theme">Escolha uma categoria para começar suas consultas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estatísticas Rápidas -->
+                <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-8">
+                    <div class="bg-card backdrop-blur-md p-3 lg:p-6 rounded-xl border border-theme animate-pulse-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-1.5 lg:p-2 bg-accent bg-opacity-20 rounded-lg">
+                                <i class="ri-database-2-line text-accent text-lg lg:text-xl"></i>
+                            </div>
+                            <div class="ml-2 lg:ml-4">
+                                <div class="text-primary-theme text-lg lg:text-2xl font-bold">18</div>
+                                <div class="text-secondary-theme text-xs lg:text-sm">APIs <span class="hidden sm:inline">Disponíveis</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-card backdrop-blur-md p-3 lg:p-6 rounded-xl border border-theme animate-pulse-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-1.5 lg:p-2 bg-blue-500 bg-opacity-20 rounded-lg">
+                                <i class="ri-search-line text-blue-400 text-lg lg:text-xl"></i>
+                            </div>
+                            <div class="ml-2 lg:ml-4">
+                                <div class="text-primary-theme text-lg lg:text-2xl font-bold">41</div>
+                                <div class="text-secondary-theme text-xs lg:text-sm">Tipos <span class="hidden sm:inline">de Consulta</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-card backdrop-blur-md p-3 lg:p-6 rounded-xl border border-theme animate-pulse-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-1.5 lg:p-2 bg-purple-500 bg-opacity-20 rounded-lg">
+                                <i class="ri-user-line text-purple-400 text-lg lg:text-xl"></i>
+                            </div>
+                            <div class="ml-2 lg:ml-4">
+                                <div class="text-primary-theme text-lg lg:text-2xl font-bold">6</div>
+                                <div class="text-secondary-theme text-xs lg:text-sm">APIs <span class="hidden sm:inline">Pessoais</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-card backdrop-blur-md p-3 lg:p-6 rounded-xl border border-theme animate-pulse-custom">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-1.5 lg:p-2 bg-orange-500 bg-opacity-20 rounded-lg">
+                                <i class="ri-car-line text-orange-400 text-lg lg:text-xl"></i>
+                            </div>
+                            <div class="ml-2 lg:ml-4">
+                                <div class="text-primary-theme text-lg lg:text-2xl font-bold">4</div>
+                                <div class="text-secondary-theme text-xs lg:text-sm">APIs <span class="hidden sm:inline">Veiculares</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards dos Módulos por Categoria -->
+                                    <div class="mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="p-2 bg-accent bg-opacity-20 rounded-lg mr-4">
+                                <i class="ri-user-search-line text-accent text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary-theme">Dados Pessoais</h2>
+                            <div class="ml-auto text-muted-theme text-sm">
+                                6 módulo(s)
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/pessoas/bigdata.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-user-search-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-accent bg-opacity-20 text-accent text-xs font-medium rounded-full">
+                                                    <i class="ri-search-2-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">8 tipos</span>
+                                                    <span class="sm:hidden">8</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        BigData                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Consulta abrangente em múltiplas bases de dados                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: bigdata.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-list-check mr-2"></i>
+                                                <span>Parâmetros: token, tipo, {valor}</span>
+                                            </div>
+                                            <div class="flex flex-wrap gap-0.5 lg:gap-1 mt-1 lg:mt-2">
+                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        Cpf                                                    </span>
+                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        Nome                                                    </span>
+                                                                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        +6                                                    </span>
+                                                                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/pessoas/cadsus.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-user-search-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-accent bg-opacity-20 text-accent text-xs font-medium rounded-full">
+                                                    <i class="ri-search-2-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">8 tipos</span>
+                                                    <span class="sm:hidden">8</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        CADSUS - Cadastro Nacional do SUS                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Consulta no Cadastro Nacional de Usuários do Sistema Único de Saúde                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: cadsus.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-list-check mr-2"></i>
+                                                <span>Parâmetros: token, tipo, {valor}</span>
+                                            </div>
+                                            <div class="flex flex-wrap gap-0.5 lg:gap-1 mt-1 lg:mt-2">
+                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        Cpf                                                    </span>
+                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        Nome                                                    </span>
+                                                                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        +6                                                    </span>
+                                                                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/pessoas/cpf_full.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-user-search-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        CPF Full                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Dados agregados completos de CPF                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: cpf_full.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/pessoas/credlink.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-user-search-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-accent bg-opacity-20 text-accent text-xs font-medium rounded-full">
+                                                    <i class="ri-search-2-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">10 tipos</span>
+                                                    <span class="sm:hidden">10</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        CredLink                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Dados de crédito e relacionamento                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: credlink.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-list-check mr-2"></i>
+                                                <span>Parâmetros: token, tipo, {valor}</span>
+                                            </div>
+                                            <div class="flex flex-wrap gap-0.5 lg:gap-1 mt-1 lg:mt-2">
+                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        Cpf                                                    </span>
+                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        Email                                                    </span>
+                                                                                                                                                    <span class="px-1.5 lg:px-2 py-0.5 lg:py-1 bg-gray-500 bg-opacity-20 text-secondary-theme text-xs rounded">
+                                                        +8                                                    </span>
+                                                                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/pessoas/financeiro_credito.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-user-search-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Score & Crédito                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Informações financeiras e score                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: financeiro_credito.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/pessoas/telefone.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-user-search-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Consulta Telefone                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Consulta por número de telefone                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: telefone.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: TELEFONE</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                                    <div class="mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="p-2 bg-accent bg-opacity-20 rounded-lg mr-4">
+                                <i class="ri-file-text-line text-accent text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary-theme">Documentos</h2>
+                            <div class="ml-auto text-muted-theme text-sm">
+                                1 módulo(s)
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/documentos/cnh_sp.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-file-text-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        CNH São Paulo                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Consulta CNH do estado de SP                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: cnh_sp.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                                    <div class="mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="p-2 bg-accent bg-opacity-20 rounded-lg mr-4">
+                                <i class="ri-image-line text-accent text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary-theme">Fotos Estaduais</h2>
+                            <div class="ml-auto text-muted-theme text-sm">
+                                6 módulo(s)
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/fotos/foto_ce.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-image-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Foto Ceará                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Fotos do estado do Ceará                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: foto_ce.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/fotos/foto_es.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-image-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Foto Espírito Santo                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Fotos do estado do ES                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: foto_es.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/fotos/foto_ma.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-image-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Foto Maranhão                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Fotos do estado do MA                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: foto_ma.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/fotos/foto_pe.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-image-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Foto Pernambuco                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Fotos do estado de PE                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: foto_pe.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/fotos/foto_pr.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-image-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Foto Paraná                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Fotos do estado do PR                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: foto_pr.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/fotos/foto_rj.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-image-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Foto Rio de Janeiro                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Fotos do estado do RJ                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: foto_rj.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                                    <div class="mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="p-2 bg-accent bg-opacity-20 rounded-lg mr-4">
+                                <i class="ri-car-line text-accent text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary-theme">Consultas Veiculares</h2>
+                            <div class="ml-auto text-muted-theme text-sm">
+                                4 módulo(s)
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/veiculos/placas.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-car-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Placas Online                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Dados completos de veículos por placa                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: placas.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: PLACA</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/veiculos/veicular_ear.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-car-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        EAR Veicular                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Exerce Atividade Remunerada                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: veicular_ear.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/veiculos/veicular_multas_mg.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-car-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Multas MG                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Multas de Minas Gerais                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: veicular_multas_mg.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: RENAVAM</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/veiculos/veicular_vistoria.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-car-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Vistoria Veicular                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Informações de vistoria                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: veicular_vistoria.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: PLACA</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                                    <div class="mb-8">
+                        <div class="flex items-center mb-6">
+                            <div class="p-2 bg-accent bg-opacity-20 rounded-lg mr-4">
+                                <i class="ri-scales-3-line text-accent text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-primary-theme">Consultas Jurídicas</h2>
+                            <div class="ml-auto text-muted-theme text-sm">
+                                1 módulo(s)
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                                                            <div class="bg-card backdrop-blur-md p-4 lg:p-6 rounded-xl border border-theme hover:bg-white hover:bg-opacity-5 transition-all group cursor-pointer animate-pulse-custom"
+                                    onclick="location.href='modules/juridico/processos.php'">
+
+                                    <!-- Header do Card -->
+                                    <div class="flex items-start justify-between mb-3 lg:mb-4">
+                                        <div class="p-2 lg:p-3 bg-accent bg-opacity-20 rounded-lg group-hover:bg-accent group-hover:bg-opacity-30 transition-all">
+                                            <i class="ri-scales-3-line text-accent text-lg lg:text-2xl"></i>
+                                        </div>
+                                        <div class="text-right">
+                                                                                            <div class="inline-flex items-center px-1.5 lg:px-2 py-0.5 lg:py-1 bg-blue-500 bg-opacity-20 text-blue-400 text-xs font-medium rounded-full">
+                                                    <i class="ri-focus-3-line mr-0.5 lg:mr-1"></i>
+                                                    <span class="hidden sm:inline">Direto</span>
+                                                </div>
+                                                                                    </div>
+                                    </div>
+
+                                    <!-- Título e Descrição -->
+                                    <h3 class="text-primary-theme text-sm lg:text-xl font-bold mb-1 lg:mb-2 group-hover:text-accent transition-colors line-clamp-2">
+                                        Processos Judiciais                                    </h3>
+                                    <p class="text-secondary-theme text-xs lg:text-sm mb-3 lg:mb-4 line-clamp-2 hidden sm:block">
+                                        Processos judiciais por CPF                                    </p>
+
+                                    <!-- Informações da Consulta -->
+                                    <div class="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
+                                        <div class="flex items-center text-xs text-muted-theme">
+                                            <i class="ri-database-line mr-1 lg:mr-2"></i>
+                                            <span class="truncate">Endpoint: processos.php</span>
+                                        </div>
+
+                                                                                    <div class="hidden lg:flex items-center text-xs text-muted-theme">
+                                                <i class="ri-key-line mr-2"></i>
+                                                <span>Parâmetro: CPF</span>
+                                            </div>
+                                                                            </div>
+
+                                    <!-- Footer do Card -->
+                                    <div class="flex items-center justify-between pt-2 lg:pt-4 border-t border-theme">
+                                        <div class="text-muted-theme text-xs">
+                                            <i class="ri-time-line mr-1"></i><span class="hidden sm:inline">Consulta </span>rápida
+                                        </div>
+                                        <div class="text-accent group-hover:text-primary-theme">
+                                            <i class="ri-arrow-right-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                            </main>
+        </div>
+    </div>
+</body>
+
+</html>
